@@ -9,44 +9,58 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText loginUsername;
-    EditText loginPassword;
-    SharedPreferences sharedPreferences;
+    private EditText loginUsername;
+    private EditText loginPassword;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginUsername = findViewById(R.id.username);
-        loginPassword = findViewById(R.id.password);
+        init();
 
         Button loginButton = findViewById(R.id.btnLogin);
-        Button registerationButton = findViewById(R.id.btnLinkToRegisterScreen);
+        Button registrationButton = findViewById(R.id.btnLinkToRegisterScreen);
+
 
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                String username = loginUsername.getText().toString();
-                String password = loginPassword.getText().toString();
-
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                editor.putString(getResources().getString(R.string.key_username), username);
-                editor.putString(getResources().getString(R.string.key_password), password);
-                editor.apply();
-
-                Intent remindMeListActivity = new Intent(LoginActivity.this, RemindMeAtListActivity.class);
-                startActivity(remindMeListActivity);
+                login();
             }
         });
 
-        registerationButton.setOnClickListener(new View.OnClickListener(){
+        registrationButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent registrationActivity = new Intent(LoginActivity.this, RegistrationActivity.class);
-                startActivity(registrationActivity);
+                register();
             }
         });
+    }
+
+    private void init(){
+        loginUsername = findViewById(R.id.username);
+        loginPassword = findViewById(R.id.password);
+        sharedPreferences = getSharedPreferences(getResources().getString(R.string.MY_PREFERENCES), MODE_PRIVATE);
+    }
+
+    private void login(){
+        String username = loginUsername.getText().toString();
+        String password = loginPassword.getText().toString();
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(getResources().getString(R.string.key_username), username);
+        editor.putString(getResources().getString(R.string.key_password), password);
+        editor.apply();
+
+        Intent remindMeListActivity = new Intent(LoginActivity.this, RemindMeAtListActivity.class);
+        startActivity(remindMeListActivity);
+    }
+
+    private void register(){
+        Intent registrationActivity = new Intent(LoginActivity.this, RegistrationActivity.class);
+        startActivity(registrationActivity);
     }
 }
