@@ -18,5 +18,6 @@
     <string name="mainMenu">Main Menu</string>
     <string name="remindMeList">Remind Me List</string>
     <string name="GoogleMaps">Google Maps</string>
+    <string name="addItem">Add Item</string>
 </resources>
 
