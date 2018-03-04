@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
@@ -19,24 +18,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         init();
+    }
 
-        Button loginButton = findViewById(R.id.btnLogin);
-        Button registrationButton = findViewById(R.id.btnLinkToRegisterScreen);
+    public void loginButton(View view){
+        login();
+    }
 
-
-        loginButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                login();
-            }
-        });
-
-        registrationButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                register();
-            }
-        });
+    public void registerButton(View view){
+        register();
     }
 
     private void init(){
