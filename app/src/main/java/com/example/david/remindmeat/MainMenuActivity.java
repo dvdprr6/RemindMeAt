@@ -25,6 +25,10 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivityForResult(googleMapsIntent, SPY);
     }
 
+    public void logout(View view){
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == SPY && resultCode == RESULT_OK){
