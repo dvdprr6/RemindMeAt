@@ -55,8 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString(getResources().getString(R.string.key_password), password);
         editor.apply();
 
-        Intent remindMeListActivity = new Intent(LoginActivity.this, RemindMeAtListActivity.class);
-        startActivity(remindMeListActivity);
+        Intent mainMenuActivity = new Intent(LoginActivity.this, MainMenuActivity.class);
+        startActivity(mainMenuActivity);
     }
 
     private void register(){
