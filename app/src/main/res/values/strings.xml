@@ -15,5 +15,8 @@
     <string name="key_username">username</string>
     <string name="key_password">password</string>
     <string name="MY_PREFERENCES">myPreferences</string>
+    <string name="mainMenu">Main Menu</string>
+    <string name="remindMeList">Remind Me List</string>
+    <string name="GoogleMaps">Google Maps</string>
 </resources>
 
