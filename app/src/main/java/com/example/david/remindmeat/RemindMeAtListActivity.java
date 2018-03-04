@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -29,6 +28,10 @@ public class RemindMeAtListActivity extends AppCompatActivity {
         }
     }
 
+    public void addItem(View view){
+
+    }
+
     public static class PlaceholderFragment extends Fragment {
 
         public PlaceholderFragment() {}
@@ -44,7 +47,10 @@ public class RemindMeAtListActivity extends AppCompatActivity {
                     "Thursday-Rainy 20/40",
                     "Friday-Funny 20/50",
                     "Sat-Sunny 70/80",
-                    "Sun-Sunny 90/100"
+                    "Sun-Sunny 90/100",
+                    "Rick",
+                    "Morty",
+                    "Summer"
             };
 
             List<String> weekForecast = new LinkedList(Arrays.asList(forecastArray));
