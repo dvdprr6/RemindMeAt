@@ -27,19 +27,21 @@
             android:id="@+id/remindMeList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/remindMeList" />
+            android:text="@string/remindMeList"
+            android:onClick="remindMeListButton"/>
 
         <Button
             android:id="@+id/googleMap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/GoogleMaps" />
+            android:text="@string/GoogleMaps"
+            android:onClick="googleMapsButton"/>
 
         <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="@string/btn_logout" />
 
     </LinearLayout>
 
