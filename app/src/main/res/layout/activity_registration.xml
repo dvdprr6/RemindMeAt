@@ -16,17 +16,30 @@
         android:paddingRight="20dp">
 
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/firstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@color/input_register_bg"
-            android:hint="@string/hint_name"
+            android:hint="@string/hint_firstname"
             android:padding="10dp"
             android:maxLines="1"
             android:inputType="textCapWords"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_login_hint"/>
+            android:textColorHint="@color/input_register_hint"/>
+
+        <EditText
+            android:id="@+id/lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/input_register_bg"
+            android:hint="@string/hint_lastname"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:inputType="textCapWords"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint" />
 
         <EditText
             android:id="@+id/email"
@@ -38,7 +51,7 @@
             android:padding="10dp"
             android:maxLines="1"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_login_hint"/>
+            android:textColorHint="@color/input_register_hint"/>
 
         <EditText
             android:id="@+id/password"
@@ -60,7 +73,8 @@
             android:layout_marginTop="20dp"
             android:background="@color/btn_register_bg"
             android:text="@string/btn_register"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:onClick="registerUser"/>
 
         <Button
             android:id="@+id/btnLinkToLoginScreen"
