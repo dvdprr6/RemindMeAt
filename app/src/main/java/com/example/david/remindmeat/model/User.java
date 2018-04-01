@@ -9,8 +9,7 @@ import android.support.annotation.NonNull;
 import java.util.UUID;
 
 @Entity(tableName = "users",
-        indices = {@Index(value = {"email"}, unique = true)}
-        )
+        indices = {@Index(value = {"email"}, unique = true)})
 public class User {
 
     @PrimaryKey
