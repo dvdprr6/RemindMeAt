@@ -3,7 +3,8 @@
     <string name="hint_email">Email</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
-    <string name="hint_name">Fullname</string>
+    <string name="hint_firstname">First Name</string>
+    <string name="hint_lastname">Last Name</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_register">REGISTER</string>
     <string name="btn_link_to_register">Not a member? Sign up now.</string>
