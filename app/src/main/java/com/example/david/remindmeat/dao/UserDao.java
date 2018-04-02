@@ -21,7 +21,7 @@ public interface UserDao {
     public Maybe<List<User>> select();
 
     @Query("SELECT * FROM users WHERE email=:email")
-    public Single<User> selectByEmail(String email);
+    public Maybe<User> selectByEmail(String email);
 
     @Insert
     public void insert(User user);
