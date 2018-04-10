@@ -6,9 +6,10 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.example.david.remindmeat.dao.UserDao;
+import com.example.david.remindmeat.model.ReminedItem;
 import com.example.david.remindmeat.model.User;
 
-@Database(entities = {User.class}, version = 1)
+@Database(entities = {User.class, ReminedItem.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
     private static final String DB_FILE_NAME = "remindmeat.db";

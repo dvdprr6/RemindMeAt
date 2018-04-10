@@ -75,7 +75,7 @@ public class UserImplementation {
         });
     }
 
-    public void updateUser(User user) {
+    public void updateUser(final User user) {
         Completable.fromAction(new Action(){
             @Override
             public void run(){
@@ -99,7 +99,7 @@ public class UserImplementation {
         });
     }
 
-    public void deletUser(User user) {
+    public void deletUser(final User user) {
         Completable.fromAction(new Action(){
             @Override
             public void run(){

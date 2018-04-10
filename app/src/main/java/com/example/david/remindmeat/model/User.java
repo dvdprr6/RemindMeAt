@@ -2,20 +2,19 @@ package com.example.david.remindmeat.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import java.util.UUID;
 
-@Entity(tableName = "users",
-        indices = {@Index(value = {"email"}, unique = true)})
+@Entity(tableName = "users")
 public class User {
 
     @PrimaryKey
-    @ColumnInfo(name = "user_id")
     @NonNull
-    private String userId;
+    private String Id;
 
     @ColumnInfo(name = "first_name")
     @NonNull
@@ -35,16 +34,16 @@ public class User {
 
     public User(){}
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return Id;
     }
 
-    public void setUserId(String userId) {
-        if (userId == null) {
-            userId = UUID.randomUUID().toString();
+    public void setId(String Id) {
+        if (Id == null) {
+            Id = UUID.randomUUID().toString();
         }
 
-        this.userId = userId;
+        this.Id = Id;
     }
 
     public String getFirstName() {

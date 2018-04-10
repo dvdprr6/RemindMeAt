@@ -32,7 +32,7 @@ public class RegistrationActivity extends AppCompatActivity{
         final UserImplementation userImplementation = new UserImplementation(this);
 
         User user = new User();
-        user.setUserId(null);
+        user.setId(null);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
