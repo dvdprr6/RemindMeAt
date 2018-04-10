@@ -10,9 +10,7 @@ import com.example.david.remindmeat.model.User;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
 import io.reactivex.Maybe;
-import io.reactivex.Single;
 
 @Dao
 public interface UserDao {
