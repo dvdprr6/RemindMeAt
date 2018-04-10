@@ -26,6 +26,8 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void logout(View view){
+        Intent logoutIntent = new Intent(this, LoginActivity.class);
+        startActivity(logoutIntent);
 
     }
 
