@@ -8,8 +8,8 @@ import com.example.david.remindmeat.table.RemindTable;
 
 import java.util.UUID;
 
-public class RemindItem implements Parcelable{
-    private String remindId;
+public class RemindItem extends Item{
+    private String id;
     private String description;
     private double longitude;
     private double latitude;
@@ -17,16 +17,18 @@ public class RemindItem implements Parcelable{
 
     public RemindItem(){}
 
-    public String getRemindId() {
-        return remindId;
+    @Override
+    public String getId() {
+        return id;
     }
 
-    public void setRemindId(String remindId) {
-        if(remindId == null){
-            remindId = UUID.randomUUID().toString();
+    @Override
+    public void setId(String id) {
+        if(id == null){
+            id = UUID.randomUUID().toString();
         }
 
-        this.remindId = remindId;
+        this.id = id;
     }
 
     public String getDescription() {
@@ -61,10 +63,11 @@ public class RemindItem implements Parcelable{
         this.userId = userId;
     }
 
+    @Override
     public ContentValues toValues(){
         ContentValues values = new ContentValues(5);
 
-        values.put(RemindTable.COLUMN_ID, this.remindId);
+        values.put(RemindTable.COLUMN_ID, this.id);
         values.put(RemindTable.COLUMN_DESCRIPTION, this.description);
         values.put(RemindTable.COLUMN_LONGITUDE, this.longitude);
         values.put(RemindTable.COLUMN_LATITUDE, this.latitude);
@@ -80,7 +83,7 @@ public class RemindItem implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.remindId);
+        dest.writeString(this.id);
         dest.writeString(this.description);
         dest.writeDouble(this.longitude);
         dest.writeDouble(this.latitude);
@@ -88,7 +91,7 @@ public class RemindItem implements Parcelable{
     }
 
     protected RemindItem(Parcel in){
-        this.remindId = in.readString();
+        this.id = in.readString();
         this.description = in.readString();
         this.longitude = in.readDouble();
         this.latitude = in.readDouble();

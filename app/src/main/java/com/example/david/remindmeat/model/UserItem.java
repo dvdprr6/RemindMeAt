@@ -8,8 +8,8 @@ import com.example.david.remindmeat.table.UserTable;
 
 import java.util.UUID;
 
-public class UserItem implements Parcelable{
-    private String userId;
+public class UserItem extends Item{
+    private String id;
     private String firstName;
     private String lastName;
     private String password;
@@ -17,15 +17,17 @@ public class UserItem implements Parcelable{
 
     public UserItem(){}
 
-    public String getUserId() {
-        return userId;
+    @Override
+    public String getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        if(userId == null){
-            userId = UUID.randomUUID().toString();
+    @Override
+    public void setId(String id) {
+        if(id == null){
+            id = UUID.randomUUID().toString();
         }
-        this.userId = userId;
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -60,10 +62,11 @@ public class UserItem implements Parcelable{
         this.email = email;
     }
 
+    @Override
     public ContentValues toValues(){
         ContentValues values = new ContentValues(5);
 
-        values.put(UserTable.COLUMN_ID, this.userId);
+        values.put(UserTable.COLUMN_ID, this.id);
         values.put(UserTable.COLUMN_FIRST_NAME, this.firstName);
         values.put(UserTable.COLUMN_LAST_NAME, this.lastName);
         values.put(UserTable.COLUMN_PASSWORD, this.password);
@@ -79,7 +82,7 @@ public class UserItem implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.userId);
+        dest.writeString(this.id);
         dest.writeString(this.firstName);
         dest.writeString(this.lastName);
         dest.writeString(this.password);
@@ -87,7 +90,7 @@ public class UserItem implements Parcelable{
     }
 
     protected UserItem(Parcel in){
-        this.userId = in.readString();
+        this.id = in.readString();
         this.firstName = in.readString();
         this.lastName = in.readString();
         this.password = in.readString();
