@@ -1,4 +1,7 @@
 package com.example.david.remindmeat.dao;
 
-public class UserDao {
+import com.example.david.remindmeat.model.UserItem;
+
+public abstract class UserDao implements Dao<UserItem> {
+    public abstract boolean isUser(String email, String password);
 }
