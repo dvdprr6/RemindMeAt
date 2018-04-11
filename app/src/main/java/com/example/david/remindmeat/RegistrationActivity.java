@@ -36,7 +36,7 @@ public class RegistrationActivity extends AppCompatActivity{
 
         if(!firstName.equals("") && !lastName.equals("") && !email.equals("") && !password.equals("")){
             UserItem userItem = new UserItem();
-            userItem.setUserId(null);
+            userItem.setId(null);
             userItem.setFirstName(firstName);
             userItem.setLastName(lastName);
             userItem.setPassword(password);
