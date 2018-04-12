@@ -10,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.david.remindmeat.global.SharedObject;
+import com.example.david.remindmeat.model.Item;
+import com.example.david.remindmeat.model.RemindItem;
+import com.example.david.remindmeat.model.UserItem;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,9 +26,11 @@ public class RemindMeAtListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remind_me_at_list);
 
+        UserItem userItem = SharedObject.getInstance().getSharedUserItemObject();
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.EmptyContainerInSingleViewOfRemindMeAtListActivity, new PlaceholderFragment())
+                    .add(R.id.RemindItemListFrame, new PlaceholderFragment())
                     .commit();
         }
     }
