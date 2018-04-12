@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.example.david.remindmeat.dao.UserDao;
 import com.example.david.remindmeat.dao.UserItemDao;
+import com.example.david.remindmeat.global.SharedObject;
+import com.example.david.remindmeat.model.UserItem;
 import com.example.david.remindmeat.utils.Constants;
 
 public class LoginActivity extends AppCompatActivity{
@@ -44,6 +46,8 @@ public class LoginActivity extends AppCompatActivity{
     private void authenticateLogin(String email, String password){
         if(!email.equals("") && !password.equals("")){
             if(userItemDao.isUser(email, password)){
+                UserItem userItem = userItemDao.searchUserByEmail(email);
+                SharedObject.getInstance().setSharedUserItemObject(userItem);
                 Intent mainMenuActivityIntent = new Intent(this, MainMenuActivity.class);
                 startActivity(mainMenuActivityIntent);
             }else{
