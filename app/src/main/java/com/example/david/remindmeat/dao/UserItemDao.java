@@ -70,4 +70,32 @@ public class UserItemDao extends UserDao {
 
         return cursor.moveToNext();
     }
+
+    @Override
+    public UserItem searchUserByEmail(String email) {
+        sqliteDatabase = databaseHelper.getReadableDatabase();
+        Cursor cursor = sqliteDatabase.query(
+                UserTable.TABLE_USERS,
+                UserTable.ALL_COLUMNS,
+                UserTable.COLUMN_EMAIL + " = ?",
+                new String[]{email},
+                null, null, null);
+
+        cursor.moveToNext();
+
+        UserItem userItem = new UserItem();
+
+        String userId = cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_ID));
+        String firstName = cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_FIRST_NAME));
+        String lastName = cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_LAST_NAME));
+        String password = cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_PASSWORD));
+
+        userItem.setId(userId);
+        userItem.setFirstName(firstName);
+        userItem.setLastName(lastName);
+        userItem.setPassword(password);
+        userItem.setEmail(email);
+
+        return userItem;
+    }
 }
