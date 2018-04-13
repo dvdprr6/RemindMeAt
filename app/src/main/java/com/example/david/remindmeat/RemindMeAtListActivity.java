@@ -1,5 +1,6 @@
 package com.example.david.remindmeat;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.david.remindmeat.global.SharedObject;
-import com.example.david.remindmeat.model.Item;
-import com.example.david.remindmeat.model.RemindItem;
 import com.example.david.remindmeat.model.UserItem;
 
 import java.util.Arrays;
@@ -36,7 +35,8 @@ public class RemindMeAtListActivity extends AppCompatActivity {
     }
 
     public void addItem(View view){
-
+        Intent creatRemindItemIntent = new Intent(this, CreateRemindItem.class);
+        startActivity(creatRemindItemIntent);
     }
 
     public static class PlaceholderFragment extends Fragment {
