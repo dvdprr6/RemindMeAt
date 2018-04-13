@@ -5,6 +5,9 @@
     <string name="hint_password">Password</string>
     <string name="hint_firstname">First Name</string>
     <string name="hint_lastname">Last Name</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_longitude">Longitude</string>
+    <string name="hint_latitude">Latitude</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_register">REGISTER</string>
     <string name="btn_link_to_register">Not a member? Sign up now.</string>
@@ -20,5 +23,8 @@
     <string name="remindMeList">Remind Me List</string>
     <string name="GoogleMaps">Google Maps</string>
     <string name="addItem">Add Item</string>
+    <string name="title_activity_create_remind_me">Map</string>
+    <string name="title_activity_maps2">Map</string>
+    <string name="title_activity_create_remind_item">Map</string>
 </resources>
 
