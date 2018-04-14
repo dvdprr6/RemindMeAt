@@ -11,25 +11,40 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.david.remindmeat.adapter.RemindMeAdapter;
+import com.example.david.remindmeat.dao.RemindDao;
+import com.example.david.remindmeat.dao.RemindItemDao;
 import com.example.david.remindmeat.global.SharedObject;
+import com.example.david.remindmeat.model.Item;
+import com.example.david.remindmeat.model.RemindItem;
 import com.example.david.remindmeat.model.UserItem;
+import com.example.david.remindmeat.utils.Constants;
 
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RemindMeAtListActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remind_me_at_list);
 
+        PlaceholderFragment placeholderFragment = new PlaceholderFragment();
+
         UserItem userItem = SharedObject.getInstance().getSharedUserItemObject();
+        RemindDao remindItemDao = new RemindItemDao(this);
+
+        List<Item> remindMeItems = remindItemDao.findRemindItemsByUserId(userItem.getId());
+
+        Bundle args = new Bundle();
+        args.putParcelableArrayList(Constants.REMIND_ME_ITEMS_ARRAY, (ArrayList<Item>)remindMeItems);
+        placeholderFragment.setArguments(args);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.RemindItemListFrame, new PlaceholderFragment())
+                    .add(R.id.RemindItemListFrame, placeholderFragment)
                     .commit();
         }
     }
@@ -52,22 +67,9 @@ public class RemindMeAtListActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-            String[] forecastArray = {
-                    "Today-Sunny 50/60",
-                    "Tomorrow-Cloudy 20/30",
-                    "Wednesday-Snowy 40/50",
-                    "Thursday-Rainy 20/40",
-                    "Friday-Funny 20/50",
-                    "Sat-Sunny 70/80",
-                    "Sun-Sunny 90/100",
-                    "Rick",
-                    "Morty",
-                    "Summer"
-            };
+            List<RemindItem> remindMeItems = getArguments().getParcelableArrayList(Constants.REMIND_ME_ITEMS_ARRAY);
 
-            List<String> weekForecast = new LinkedList(Arrays.asList(forecastArray));
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.layout_list_text_view, R.id.listTextView, weekForecast);
+            ArrayAdapter<RemindItem> adapter = new RemindMeAdapter(getActivity(), R.layout.layout_list_text_view, R.id.listTextView, remindMeItems);
 
             View rootView = inflater.inflate(R.layout.list_view_fragment, container, false);
 
