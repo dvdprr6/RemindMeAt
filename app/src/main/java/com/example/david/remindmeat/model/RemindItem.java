@@ -10,6 +10,7 @@ import java.util.UUID;
 
 public class RemindItem extends Item{
     private String id;
+    private String title;
     private String description;
     private double longitude;
     private double latitude;
@@ -29,6 +30,14 @@ public class RemindItem extends Item{
         }
 
         this.id = id;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
     }
 
     public String getDescription() {
@@ -65,9 +74,10 @@ public class RemindItem extends Item{
 
     @Override
     public ContentValues toValues(){
-        ContentValues values = new ContentValues(5);
+        ContentValues values = new ContentValues(6);
 
         values.put(RemindTable.COLUMN_ID, this.id);
+        values.put(RemindTable.COLUMN_TITLE, this.title);
         values.put(RemindTable.COLUMN_DESCRIPTION, this.description);
         values.put(RemindTable.COLUMN_LONGITUDE, this.longitude);
         values.put(RemindTable.COLUMN_LATITUDE, this.latitude);
@@ -84,6 +94,7 @@ public class RemindItem extends Item{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
+        dest.writeString(this.title);
         dest.writeString(this.description);
         dest.writeDouble(this.longitude);
         dest.writeDouble(this.latitude);
@@ -92,6 +103,7 @@ public class RemindItem extends Item{
 
     protected RemindItem(Parcel in){
         this.id = in.readString();
+        this.title = in.readString();
         this.description = in.readString();
         this.longitude = in.readDouble();
         this.latitude = in.readDouble();
