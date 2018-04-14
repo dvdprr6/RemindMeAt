@@ -83,6 +83,8 @@ public class RemindItemDao extends RemindDao {
             remindItems.add(remindItem);
         }
 
+        cursor.close();
+
         return remindItems;
     }
 }
