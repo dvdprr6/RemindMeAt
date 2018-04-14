@@ -7,4 +7,6 @@ public class Constants {
     public static final String TEXT_EDIT_MISSING_INPUT_FEILDS = "Please enter all necessary information";
 
     public static final long SQL_INSERT_FAILED = -1;
+
+    public static final String REMIND_ME_ITEMS_ARRAY = "remind_me_items_array";
 }
