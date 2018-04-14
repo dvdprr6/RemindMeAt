@@ -17,6 +17,8 @@
     <string name="btn_link_to_login">Already registered? Login Me.</string>
     <string name="btn_create_item">Create Item</string>
     <string name="btn_cancel">Cancel</string>
+    <string name="btn_update_item">Update</string>
+    <string name="btn_delete_item">Delete</string>
 
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
@@ -32,5 +34,6 @@
     <string name="title_activity_create_remind_me">Map</string>
     <string name="title_activity_maps2">Map</string>
     <string name="title_activity_create_remind_item">Map</string>
+    <string name="title_activity_update_remind_me_item">Map</string>
 </resources>
 
