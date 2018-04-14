@@ -5,56 +5,83 @@ android:layout_height="match_parent"
 android:gravity="center"
 android:orientation="vertical">
 
-<EditText
-    android:id="@+id/longitude"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    android:background="@color/white"
-    android:ems="10"
-    android:hint="@string/hint_longitude"
-    android:inputType="numberDecimal"
-    android:padding="10dp"
-    android:singleLine="true" />
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="@string/hint_title"
+        android:inputType="text"
+        android:padding="5dp"
+        android:singleLine="true" />
 
-<EditText
-    android:id="@+id/latitude"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    android:background="@color/white"
-    android:ems="10"
-    android:hint="@string/hint_longitude"
-    android:inputType="numberDecimal"
-    android:padding="10dp"
-    android:singleLine="true" />
 
-<EditText
-    android:id="@+id/description"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    android:background="@color/white"
-    android:hint="@string/hint_description"
-    android:padding="10dp"
-    android:singleLine="true"
-    android:inputType="text"/>
+    <EditText
+        android:id="@+id/latitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="@string/hint_latitude"
+        android:inputType="numberDecimal"
+        android:padding="5dp"
+        android:singleLine="true" />
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    <EditText
+        android:id="@+id/longitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="@string/hint_longitude"
+        android:inputType="numberDecimal"
+        android:padding="5dp"
+        android:singleLine="true" />
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/mapRemindItem"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@color/white"
+        android:hint="@string/hint_description"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/btnCreateItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_create_item"
+        android:onClick="createItem"/>
+
+    <Button
+        android:id="@+id/btnCancelCreateItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_cancel"
+        android:onClick="cancelCreateItem"/>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".CreateRemindItem" />
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
-</FrameLayout>
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mapRemindItem"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".CreateRemindItem" />
+
+    </FrameLayout>
 
 </LinearLayout>
