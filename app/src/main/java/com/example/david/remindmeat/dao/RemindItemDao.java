@@ -1,11 +1,13 @@
 package com.example.david.remindmeat.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.david.remindmeat.database.DatabaseHelper;
 import com.example.david.remindmeat.model.RemindItem;
+import com.example.david.remindmeat.table.RemindTable;
 
 import java.util.List;
 
@@ -29,7 +31,12 @@ public class RemindItemDao extends RemindDao {
 
     @Override
     public long insert(RemindItem remindItem) {
-        return 0;
+        ContentValues values = remindItem.toValues();
+        sqLiteDatabase = databaseHelper.getWritableDatabase();
+
+        long insertResult = sqLiteDatabase.insert(RemindTable.TABLE_REMIND, null, values);
+
+        return insertResult;
     }
 
     @Override
