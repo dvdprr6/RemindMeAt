@@ -56,8 +56,8 @@ public class RegistrationActivity extends AppCompatActivity{
 
     private void registerUser(UserItem userItem){
         if(userItemDao.insert(userItem) > -1){
-            Intent mainMenuActivityIntent = new Intent(this, MainMenuActivity.class);
-            startActivity(mainMenuActivityIntent);
+            Intent loginActivityIntent = new Intent(this, LoginActivity.class);
+            startActivity(loginActivityIntent);
         }else{
             Toast.makeText(this, Constants.LOGIN_FAILED_EMAIL, Toast.LENGTH_LONG).show();
         }
