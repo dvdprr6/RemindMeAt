@@ -15,6 +15,7 @@ import com.example.david.remindmeat.adapter.RemindMeAdapter;
 import com.example.david.remindmeat.dao.RemindDao;
 import com.example.david.remindmeat.dao.RemindItemDao;
 import com.example.david.remindmeat.global.SharedObject;
+import com.example.david.remindmeat.handler.ListClickHandler;
 import com.example.david.remindmeat.model.Item;
 import com.example.david.remindmeat.model.RemindItem;
 import com.example.david.remindmeat.model.UserItem;
@@ -50,8 +51,8 @@ public class RemindMeAtListActivity extends AppCompatActivity {
     }
 
     public void addItem(View view){
-        Intent creatRemindItemIntent = new Intent(this, CreateRemindItem.class);
-        startActivity(creatRemindItemIntent);
+        Intent createRemindItemIntent = new Intent(this, CreateRemindItem.class);
+        startActivity(createRemindItemIntent);
     }
 
     public void mainMenu(View view){
@@ -76,6 +77,8 @@ public class RemindMeAtListActivity extends AppCompatActivity {
             ListView listView = rootView.findViewById(R.id.RemindMeAtlistview);
 
             listView.setAdapter(adapter);
+
+            listView.setOnItemClickListener(new ListClickHandler(getActivity()));
 
             return rootView;
 
