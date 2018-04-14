@@ -39,6 +39,11 @@ public class RemindMeAtListActivity extends AppCompatActivity {
         startActivity(creatRemindItemIntent);
     }
 
+    public void mainMenu(View view){
+        Intent mainMenuIntent = new Intent(this, MainMenuActivity.class);
+        startActivity(mainMenuIntent);
+    }
+
     public static class PlaceholderFragment extends Fragment {
 
         public PlaceholderFragment() {}

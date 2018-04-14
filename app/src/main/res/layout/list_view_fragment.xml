@@ -13,6 +13,13 @@
         android:text="@string/addItem"
         android:onClick="addItem"/>
 
+    <Button
+        android:id="@+id/backMainMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mainMenu"
+        android:onClick="mainMenu"/>
+
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
