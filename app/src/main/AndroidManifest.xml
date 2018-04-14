@@ -44,7 +44,10 @@
         <activity android:name=".MainMenuActivity" />
         <activity
             android:name=".CreateRemindItem"
-            android:label="@string/title_activity_create_remind_item"></activity>
+            android:label="@string/title_activity_create_remind_item" />
+        <activity
+            android:name=".UpdateRemindMeItemActivity"
+            android:label="@string/title_activity_update_remind_me_item"></activity>
     </application>
 
 </manifest>
