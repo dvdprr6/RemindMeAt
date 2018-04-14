@@ -10,6 +10,7 @@ import com.example.david.remindmeat.database.DatabaseHelper;
 import com.example.david.remindmeat.model.Item;
 import com.example.david.remindmeat.model.RemindItem;
 import com.example.david.remindmeat.table.RemindTable;
+import com.example.david.remindmeat.table.UserTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +45,21 @@ public class RemindItemDao extends RemindDao {
 
     @Override
     public void update(RemindItem remindItem) {
-
+        ContentValues values = remindItem.toValues();
+        sqLiteDatabase = databaseHelper.getWritableDatabase();
+        sqLiteDatabase.update(
+                RemindTable.TABLE_REMIND,
+                values, UserTable.COLUMN_ID + " = ? ",
+                new String[]{remindItem.getId()});
     }
 
     @Override
     public void delete(RemindItem remindItem) {
-
+        sqLiteDatabase = databaseHelper.getWritableDatabase();
+        sqLiteDatabase.delete(
+                RemindTable.TABLE_REMIND,
+                RemindTable.COLUMN_ID + " = ? ",
+                new String[]{remindItem.getId()});
     }
 
     @Override
