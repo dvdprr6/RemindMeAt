@@ -9,4 +9,8 @@ public class Constants {
     public static final long SQL_INSERT_FAILED = -1;
 
     public static final String REMIND_ME_ITEMS_ARRAY = "remind_me_items_array";
+
+    public static final String EXTRA_SELECTED_REMIND_ME_ITEM = "extra_selected_remind_me_item";
+
+    public static final String TOAST_FILL_FIELDS = "Please fill all fields";
 }
