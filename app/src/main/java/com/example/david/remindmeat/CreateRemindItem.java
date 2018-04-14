@@ -1,6 +1,7 @@
 package com.example.david.remindmeat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -10,8 +11,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.david.remindmeat.dao.RemindDao;
+import com.example.david.remindmeat.dao.RemindItemDao;
+import com.example.david.remindmeat.global.SharedObject;
+import com.example.david.remindmeat.model.RemindItem;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -26,6 +33,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/*
+ * REFERENCE: https://stackoverflow.com/questions/45207709/how-to-add-marker-on-google-maps-android?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+ */
 public class CreateRemindItem extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -37,6 +47,11 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
     private Marker mCurrLocationMarker;
     private LocationRequest mLocationRequest;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    private EditText latitudeEditText;
+    private EditText longitudeEditText;
+    private EditText titleEditText;
+    private EditText descriptionEditText;
+    private RemindDao remindItemDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +66,33 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapRemindItem);
         mapFragment.getMapAsync(this);
+
+        remindItemDao = new RemindItemDao(this);
+
+        latitudeEditText = findViewById(R.id.latitude);
+        longitudeEditText = findViewById(R.id.longitude);
+        titleEditText = findViewById(R.id.title);
+        descriptionEditText = findViewById(R.id.description);
+    }
+
+    public void createItem(View view){
+        RemindItem remindItem = new RemindItem();
+        remindItem.setId(null);
+        remindItem.setTitle(titleEditText.getText().toString());
+        remindItem.setDescription(descriptionEditText.getText().toString());
+        remindItem.setLatitude(Double.valueOf(latitudeEditText.getText().toString()));
+        remindItem.setLongitude(Double.valueOf(longitudeEditText.getText().toString()));
+        remindItem.setUserId(SharedObject.getInstance().getSharedUserItemObject().getId());
+
+        remindItemDao.insert(remindItem);
+
+        Intent remindMeListIntent = new Intent(this, RemindMeAtListActivity.class);
+        startActivity(remindMeListIntent);
+    }
+
+    public void cancelCreateItem(View view){
+        Intent remindMeListIntent = new Intent(this, RemindMeAtListActivity.class);
+        startActivity(remindMeListIntent);
     }
 
 
@@ -90,7 +132,8 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
                 MarkerOptions markerOptions = new MarkerOptions();
                 markerOptions.position(latLng);
 
-                markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+                latitudeEditText.setText(String.valueOf(latLng.latitude));
+                longitudeEditText.setText(String.valueOf(latLng.longitude));
 
                 mMap.clear();
 
@@ -147,6 +190,9 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
 
+        latitudeEditText.setText(String.valueOf(latLng.latitude));
+        longitudeEditText.setText(String.valueOf(latLng.longitude));
+
     }
 
     @Override
@@ -184,4 +230,5 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
             return true;
         }
     }
+
 }
