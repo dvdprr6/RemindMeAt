@@ -10,7 +10,6 @@ import com.example.david.remindmeat.database.DatabaseHelper;
 import com.example.david.remindmeat.model.Item;
 import com.example.david.remindmeat.model.RemindItem;
 import com.example.david.remindmeat.table.RemindTable;
-import com.example.david.remindmeat.table.UserTable;
 
 import java.util.ArrayList;
 import java.util.List;
