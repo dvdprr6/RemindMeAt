@@ -49,7 +49,7 @@ public class RemindItemDao extends RemindDao {
         sqLiteDatabase = databaseHelper.getWritableDatabase();
         sqLiteDatabase.update(
                 RemindTable.TABLE_REMIND,
-                values, UserTable.COLUMN_ID + " = ? ",
+                values, RemindTable.COLUMN_ID + " = ?",
                 new String[]{remindItem.getId()});
     }
 
@@ -58,7 +58,7 @@ public class RemindItemDao extends RemindDao {
         sqLiteDatabase = databaseHelper.getWritableDatabase();
         sqLiteDatabase.delete(
                 RemindTable.TABLE_REMIND,
-                RemindTable.COLUMN_ID + " = ? ",
+                RemindTable.COLUMN_ID + " = ?",
                 new String[]{remindItem.getId()});
     }
 
