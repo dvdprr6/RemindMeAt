@@ -1,6 +1,7 @@
 package com.example.david.remindmeat;
 
 import android.Manifest;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -19,8 +20,13 @@ import com.example.david.remindmeat.dao.RemindDao;
 import com.example.david.remindmeat.dao.RemindItemDao;
 import com.example.david.remindmeat.global.SharedObject;
 import com.example.david.remindmeat.model.RemindItem;
+import com.example.david.remindmeat.service.LocationAlertIntentService;
+import com.example.david.remindmeat.utils.Constants;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.Geofence;
+import com.google.android.gms.location.GeofencingClient;
+import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -32,6 +38,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 /*
  * REFERENCE: https://stackoverflow.com/questions/45207709/how-to-add-marker-on-google-maps-android?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
@@ -52,6 +60,7 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
     private EditText titleEditText;
     private EditText descriptionEditText;
     private RemindDao remindItemDao;
+    private GeofencingClient geofencingClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +82,8 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
         longitudeEditText = findViewById(R.id.longitude);
         titleEditText = findViewById(R.id.title);
         descriptionEditText = findViewById(R.id.description);
+
+        geofencingClient = LocationServices.getGeofencingClient(this);
     }
 
     public void createItem(View view){
@@ -110,11 +121,6 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-        // Add a marker in Sydney and move the camera
-/*        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
-
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
                 buildGoogleApiClient();
@@ -138,6 +144,8 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
                 mMap.clear();
 
                 mMap.addMarker(markerOptions);
+
+                addLocationAlert(latLng.latitude, latLng.longitude);
             }
         });
     }
@@ -229,6 +237,48 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
         }else{
             return true;
         }
+    }
+
+    private void addLocationAlert(double lat, double lng){
+        if(checkLocationPermission()) {
+            String key = "" + lat + "-" + lng;
+            Geofence geofence = getGeofence(lat, lng, key);
+            geofencingClient.addGeofences(getGeofencingRequest(geofence), getGeofencePendingIntent()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(CreateRemindItem.this, "Location alter has been added", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(CreateRemindItem.this, "Location alter could not be added", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+    }
+
+    private PendingIntent getGeofencePendingIntent(){
+        Intent intent = new Intent(this, LocationAlertIntentService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return pendingIntent;
+    }
+
+    private GeofencingRequest getGeofencingRequest(Geofence geofence){
+        GeofencingRequest.Builder builder = new GeofencingRequest.Builder();
+
+        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_DWELL);
+        builder.addGeofence(geofence);
+
+        return builder.build();
+    }
+
+    private Geofence getGeofence(double lat, double lng, String key){
+        return new Geofence.Builder()
+                .setRequestId(key)
+                .setCircularRegion(lat, lng, Constants.GEOFENCE_RADUIS)
+                .setExpirationDuration(Geofence.NEVER_EXPIRE)
+                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_DWELL)
+                .setLoiteringDelay(10000)
+                .build();
     }
 
 }
