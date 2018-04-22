@@ -47,7 +47,11 @@
             android:label="@string/title_activity_create_remind_item" />
         <activity
             android:name=".UpdateRemindMeItemActivity"
-            android:label="@string/title_activity_update_remind_me_item"></activity>
+            android:label="@string/title_activity_update_remind_me_item" />
+
+        <service
+            android:name=".service.LocationAlertIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>
