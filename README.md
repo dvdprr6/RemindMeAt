@@ -15,7 +15,7 @@ The purpose of the app allows you to set an item, within this item you can set y
 Login Screen
 <!--![login](https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/login.png)-->
 
-<img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/login.png" width="500" height="1000" />
+<img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/login.png" width="500" height="750" />
 
 Register Screen
 ![register](https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/register.png)
