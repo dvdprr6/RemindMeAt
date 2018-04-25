@@ -13,28 +13,26 @@ The purpose of the app allows you to set an item, within this item you can set y
 ## How to use
 
 Login Screen
-<!--![login](https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/login.png)-->
-
 <img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/login.png" width="500" height="750" />
 
 Register Screen
-![register](https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/register.png)
+<img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/register.png" width="500" height="750" />
 
 Main Menu
-![main-menu](https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/main-menu.png)
+<img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/main-menu.png" width="500" height="750" />
 
 Map
-![maps](https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/maps.png)
+<img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/maps.png" width="500" height="750" />
 
 List
-![list](https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/list.png)
+<img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/list.png" width="500" height="750" />
 
 Ceate Screen
-![create](https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/create.png)
+<img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/create.png" width="500" height="750" />
+
 
 Update Screen
-![update](https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/update.png)
-
+<img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/update.png" width="500" height="750" />
 
 ## Testing
 No unit tests are available in this application, all tests were done using system testing. To test the geofence, I would set a specific location on google maps and head to that location. Once at the location I would be notified.
