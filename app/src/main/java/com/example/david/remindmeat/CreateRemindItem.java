@@ -99,6 +99,10 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
 
         Intent remindMeListIntent = new Intent(this, RemindMeAtListActivity.class);
         startActivity(remindMeListIntent);
+
+        String key = remindItem.getTitle() + "\n" + remindItem.getDescription();
+
+        addLocationAlert(remindItem.getLatitude(), remindItem.getLongitude(), key);
     }
 
     public void cancelCreateItem(View view){
@@ -145,7 +149,7 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
 
                 mMap.addMarker(markerOptions);
 
-                addLocationAlert(latLng.latitude, latLng.longitude);
+
             }
         });
     }
@@ -239,9 +243,8 @@ public class CreateRemindItem extends FragmentActivity implements OnMapReadyCall
         }
     }
 
-    private void addLocationAlert(double lat, double lng){
+    private void addLocationAlert(double lat, double lng, String key){
         if(checkLocationPermission()) {
-            String key = "" + lat + "-" + lng;
             Geofence geofence = getGeofence(lat, lng, key);
             geofencingClient.addGeofences(getGeofencingRequest(geofence), getGeofencePendingIntent()).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
