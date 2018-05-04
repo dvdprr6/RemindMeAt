@@ -1,95 +1,60 @@
 package com.example.david.remindmeat;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.david.remindmeat.callback.UserCallback;
-import com.example.david.remindmeat.implementation.UserImplementation;
-import com.example.david.remindmeat.model.User;
+import com.example.david.remindmeat.dao.UserDao;
+import com.example.david.remindmeat.dao.UserItemDao;
+import com.example.david.remindmeat.global.SharedObject;
+import com.example.david.remindmeat.model.UserItem;
+import com.example.david.remindmeat.utils.Constants;
 
-import java.util.List;
-
-public class LoginActivity extends AppCompatActivity implements UserCallback{
-    private EditText loginEmail;
-    private EditText loginPassword;
-    private String email;
-    private String password;
-    private SharedPreferences sharedPreferences;
-    private static final String TAG = "LoginActivity";
+public class LoginActivity extends AppCompatActivity{
+    private UserDao userItemDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        init();
+        userItemDao = new UserItemDao(this);
     }
 
     public void loginButton(View view){
-        login();
+        EditText loginEmail = findViewById(R.id.email);
+        EditText loginPassword = findViewById(R.id.password);
+
+        String email = loginEmail.getText().toString().toLowerCase();
+        String password = loginPassword.getText().toString();
+
+        if(!email.equals("") && !password.equals("")){
+            authenticateLogin(email, password);
+        }else {
+            Toast.makeText(this, Constants.TEXT_EDIT_MISSING_INPUT_FEILDS, Toast.LENGTH_LONG).show();
+        }
     }
 
     public void registerButton(View view){
-        register();
-    }
-
-    private void init(){
-        loginEmail = findViewById(R.id.email);
-        loginPassword = findViewById(R.id.password);
-        //sharedPreferences = getSharedPreferences(getResources().getString(R.string.MY_PREFERENCES), MODE_PRIVATE);
-    }
-
-    private void login(){
-        email = loginEmail.getText().toString().toLowerCase();
-        password = loginPassword.getText().toString();
-
-        //SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        //editor.putString(getResources().getString(R.string.key_email), email);
-        //editor.putString(getResources().getString(R.string.key_password), password);
-        //editor.apply();
-
-        //if(email != "" && password != null) {
-        if(!email.equals("") && !password.equals("")){
-
-            UserImplementation userImplementation = new UserImplementation(this);
-
-            userImplementation.findUserByEmail(this, email);
-        }else{
-            Toast.makeText(this, "Login Failed",Toast.LENGTH_LONG).show();
-        }
-
-
-    }
-
-    private void register(){
         Intent registrationActivity = new Intent(LoginActivity.this, RegistrationActivity.class);
         startActivity(registrationActivity);
     }
 
-    @Override
-    public void onUserLoaded(List<User> users) {
-        for(User user : users){
-            Log.i(TAG, user.getFirstName());
-            Log.i(TAG, user.getLastName());
-            Log.i(TAG, user.getEmail());
-            Log.i(TAG, user.getPassword());
-        }
-    }
-
-    @Override
-    public void onUserLoaded(User user) {
-        if(user.getEmail().equals(email) && user.getPassword().equals(password)){
-            Intent mainMenuActivity = new Intent(LoginActivity.this, MainMenuActivity.class);
-            startActivity(mainMenuActivity);
+    private void authenticateLogin(String email, String password){
+        if(!email.equals("") && !password.equals("")){
+            if(userItemDao.isUser(email, password)){
+                UserItem userItem = userItemDao.searchUserByEmail(email);
+                SharedObject.getInstance().setSharedUserItemObject(userItem);
+                Intent mainMenuActivityIntent = new Intent(this, MainMenuActivity.class);
+                startActivity(mainMenuActivityIntent);
+            }else{
+                Toast.makeText(this, Constants.LOGIN_FAILED_LOGIN_FAILED, Toast.LENGTH_LONG).show();
+            }
         }else{
-            Toast.makeText(this, "Login Failed",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, Constants.LOGIN_FAILED_LOGIN_FAILED, Toast.LENGTH_LONG).show();
         }
     }
 }

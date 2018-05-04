@@ -1,14 +1,25 @@
 <resources>
     <string name="app_name">RemindMeAt</string>
+
     <string name="hint_email">Email</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="hint_firstname">First Name</string>
     <string name="hint_lastname">Last Name</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_longitude">Longitude</string>
+    <string name="hint_latitude">Latitude</string>
+    <string name="hint_title">Title</string>
+
     <string name="btn_login">LOGIN</string>
     <string name="btn_register">REGISTER</string>
     <string name="btn_link_to_register">Not a member? Sign up now.</string>
     <string name="btn_link_to_login">Already registered? Login Me.</string>
+    <string name="btn_create_item">Create Item</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_update_item">Update</string>
+    <string name="btn_delete_item">Delete</string>
+
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Fullname</string>
@@ -20,5 +31,9 @@
     <string name="remindMeList">Remind Me List</string>
     <string name="GoogleMaps">Google Maps</string>
     <string name="addItem">Add Item</string>
+    <string name="title_activity_create_remind_me">Map</string>
+    <string name="title_activity_maps2">Map</string>
+    <string name="title_activity_create_remind_item">Map</string>
+    <string name="title_activity_update_remind_me_item">Map</string>
 </resources>
 
