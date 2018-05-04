@@ -41,6 +41,15 @@ Update Screen
 
 <img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/update.png" width="500" height="750" />
 
+## Examples
+
+Metro Example
+<img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/example-1.png" width="500" height="750" />
+
+Park Example
+
+<img src="https://github.com/dvdprr6/RemindMeAt/blob/sqlite/images/example-2.png" width="500" height="750" />
+
 ## Testing
 No unit tests are available in this application, all tests were done using system testing. To test the geofence, I would set a specific location on google maps and head to that location. Once at the location I would be notified.
 
